@@ -34,5 +34,10 @@ EOF
 
 echo "Starting fail2ban..."
 touch /var/log/auth.log
-mkdir /var/run/fail2ban
+
+if [ ! -d "/var/run/fail2ban/" ];then
+  mkdir /var/run/fail2ban
+  else
+  echo "文件夹已经存在"
+fi
 /usr/bin/fail2ban-server -xb --logtarget=stdout start
